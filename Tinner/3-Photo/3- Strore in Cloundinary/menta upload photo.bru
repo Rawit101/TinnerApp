@@ -1,0 +1,19 @@
+meta {
+  name: menta upload photo
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{tinner_url}}/photo
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  authorization: Bearer {{menta_token}}
+}
+
+body:multipart-form {
+  image: @file()
+}

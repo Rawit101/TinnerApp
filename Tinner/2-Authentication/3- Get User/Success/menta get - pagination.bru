@@ -1,0 +1,20 @@
+meta {
+  name: menta get - pagination
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{tinner_url}}/user/?pageSize=2&currentPage=1
+  body: none
+  auth: none
+}
+
+params:query {
+  pageSize: 2
+  currentPage: 1
+}
+
+headers {
+  authorization: Bearer {{menta_token}}
+}

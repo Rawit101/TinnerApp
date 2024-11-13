@@ -1,0 +1,21 @@
+meta {
+  name: menta toggle-like manita
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{tinner_url}}/like
+  body: json
+  auth: none
+}
+
+headers {
+  authorization: Bearer {{menta_token}}
+}
+
+body:json {
+  {
+    "target_id": "{{manita_id}}"
+  }
+}

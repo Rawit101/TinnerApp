@@ -1,0 +1,34 @@
+meta {
+  name: taksin - gender
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{tinner_url}}/account/register
+  body: none
+  auth: none
+}
+
+script:pre-request {
+  req.setBody({
+    "username": "taksin",
+    "password": "P@ssw0rd",
+    "display_name": "Introversion",
+    "date_of_birth": new Date("1975-05-21"),
+    "looking_for": "female",
+    "gender":"male",
+  })
+}
+
+script:post-response {
+  if(res.status == 200){
+    let token = res.body.token;
+    if(token)
+      bru.setVar("taksin_token",token)
+  
+    let user_id = res.body.user.id
+    if(user_id)
+     bru.setVar("taksin_id",user_id)
+  }
+}

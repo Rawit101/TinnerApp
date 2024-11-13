@@ -1,0 +1,21 @@
+meta {
+  name: taksaporn get - menta
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{tinner_url}}/user/?pageSize=20&currentPage=1&username=menta
+  body: none
+  auth: none
+}
+
+params:query {
+  pageSize: 20
+  currentPage: 1
+  username: menta
+}
+
+headers {
+  authorization: Bearer {{taksaporn_token}}
+}

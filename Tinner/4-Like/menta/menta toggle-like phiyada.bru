@@ -1,0 +1,21 @@
+meta {
+  name: menta toggle-like phiyada
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{tinner_url}}/like
+  body: json
+  auth: none
+}
+
+headers {
+  authorization: Bearer {{menta_token}}
+}
+
+body:json {
+  {
+    "target_id": "{{phiyada_id}}"
+  }
+}

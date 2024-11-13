@@ -1,0 +1,34 @@
+meta {
+  name: phiyada - gender
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{tinner_url}}/account/register
+  body: none
+  auth: none
+}
+
+script:pre-request {
+  req.setBody({
+    "username": "phiyada",
+    "password": "P@ssw0rd",
+    "display_name": "Spicies",
+    "date_of_birth": new Date("1990-05-21"),
+    "looking_for": "male",
+    "gender":"female",
+  })
+}
+
+script:post-response {
+  if(res.status == 200){
+    let token = res.body.token;
+    if(token)
+      bru.setVar("phiyada_token",token)
+  
+    let user_id = res.body.user.id
+    if(user_id)
+     bru.setVar("phiyada_id",user_id)
+  }
+}

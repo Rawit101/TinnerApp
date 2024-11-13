@@ -1,0 +1,21 @@
+meta {
+  name: taksaporn toggle-like menta
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{tinner_url}}/like
+  body: json
+  auth: none
+}
+
+headers {
+  authorization: Bearer {{taksaporn_token}}
+}
+
+body:json {
+  {
+    "target_id": "{{menta_id}}"
+  }
+}

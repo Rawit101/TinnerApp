@@ -1,0 +1,21 @@
+meta {
+  name: menta get - looking_for
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{tinner_url}}/user/?pageSize=20&currentPage=1&looking_for=female
+  body: none
+  auth: none
+}
+
+params:query {
+  pageSize: 20
+  currentPage: 1
+  looking_for: female
+}
+
+headers {
+  authorization: Bearer {{menta_token}}
+}

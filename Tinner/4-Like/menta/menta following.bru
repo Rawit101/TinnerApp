@@ -1,0 +1,20 @@
+meta {
+  name: menta following
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{tinner_url}}/like/following?pageSize=50&currentPage=1
+  body: none
+  auth: none
+}
+
+params:query {
+  pageSize: 50
+  currentPage: 1
+}
+
+headers {
+  authorization: Bearer {{menta_token}}
+}

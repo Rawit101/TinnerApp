@@ -1,0 +1,22 @@
+meta {
+  name: menta get - query age
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{tinner_url}}/user/?pageSize=20&currentPage=1&min_age=30&max_age=35
+  body: none
+  auth: none
+}
+
+params:query {
+  pageSize: 20
+  currentPage: 1
+  min_age: 30
+  max_age: 35
+}
+
+headers {
+  authorization: Bearer {{menta_token}}
+}

@@ -1,0 +1,21 @@
+meta {
+  name: invalid username
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{tinner_url}}/account/register
+  body: none
+  auth: none
+}
+
+script:pre-request {
+  req.setBody({
+      "username": "me",
+      "password": "P@ssw0rd",
+      "display_name": "Talker",
+      "date_of_birth": new Date("2000-05-21"),
+      "looking_for": "all"
+  })
+}

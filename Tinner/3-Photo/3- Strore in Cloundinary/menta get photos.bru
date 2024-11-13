@@ -1,0 +1,15 @@
+meta {
+  name: menta get photos
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{tinner_url}}/photo
+  body: none
+  auth: none
+}
+
+headers {
+  authorization: Bearer {{menta_token}}
+}

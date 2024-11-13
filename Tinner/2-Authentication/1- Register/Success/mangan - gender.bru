@@ -1,0 +1,34 @@
+meta {
+  name: mangan - gender
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{tinner_url}}/account/register
+  body: none
+  auth: none
+}
+
+script:pre-request {
+  req.setBody({
+    "username": "mangan",
+    "password": "P@ssw0rd",
+    "display_name": "Friendly",
+    "date_of_birth": new Date("1985-05-21"),
+    "looking_for": "all",
+    "gender":"male",
+  })
+}
+
+script:post-response {
+  if(res.status == 200){
+    let token = res.body.token;
+    if(token)
+      bru.setVar("mangan_token",token)
+  
+    let user_id = res.body.user.id
+    if(user_id)
+     bru.setVar("mangan_id",user_id)
+  }
+}

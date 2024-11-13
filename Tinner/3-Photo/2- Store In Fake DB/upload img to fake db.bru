@@ -1,0 +1,15 @@
+meta {
+  name: upload img to fake db
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{tinner_url}}/photo
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  image: @file()
+}

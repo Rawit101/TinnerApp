@@ -1,0 +1,18 @@
+meta {
+  name: invalid username
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{tinner_url}}/account/login
+  body: none
+  auth: none
+}
+
+script:pre-request {
+  req.setBody({
+    "username": "iloveyou",
+    "password": "password",
+  })
+}

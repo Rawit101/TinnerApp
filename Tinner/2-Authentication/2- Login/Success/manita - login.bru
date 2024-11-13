@@ -1,0 +1,30 @@
+meta {
+  name: manita - login
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{tinner_url}}/account/login
+  body: none
+  auth: none
+}
+
+script:pre-request {
+  req.setBody({
+    "username": "manita",
+    "password": "P@ssw0rd",
+  })
+}
+
+script:post-response {
+  if(res.status == 200){
+    let token = res.body.token;
+    if(token)
+      bru.setVar("manita_token",token)
+  
+    let user_id = res.body.user.id
+    if(user_id)
+     bru.setVar("manita_id",user_id)
+  }
+}

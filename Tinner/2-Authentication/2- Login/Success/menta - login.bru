@@ -1,0 +1,30 @@
+meta {
+  name: menta - login
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{tinner_url}}/account/login
+  body: none
+  auth: none
+}
+
+script:pre-request {
+  req.setBody({
+    "username": "menta",
+    "password": "P@ssw0rd",
+  })
+}
+
+script:post-response {
+  if(res.status == 200){
+    let token = res.body.token;
+    if(token)
+      bru.setVar("menta_token",token)
+  
+    let user_id = res.body.user.id
+    if(user_id)
+     bru.setVar("menta_id",user_id)
+  }
+}

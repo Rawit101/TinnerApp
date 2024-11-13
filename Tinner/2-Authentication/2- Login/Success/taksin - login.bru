@@ -1,0 +1,30 @@
+meta {
+  name: taksin - login
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{tinner_url}}/account/login
+  body: none
+  auth: none
+}
+
+script:pre-request {
+  req.setBody({
+    "username": "taksin",
+    "password": "P@ssw0rd",
+  })
+}
+
+script:post-response {
+  if(res.status == 200){
+    let token = res.body.token;
+    if(token)
+      bru.setVar("taksin_token",token)
+  
+    let user_id = res.body.user.id
+    if(user_id)
+     bru.setVar("taksin_id",user_id)
+  }
+}

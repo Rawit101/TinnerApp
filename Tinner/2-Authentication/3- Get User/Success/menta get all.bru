@@ -1,0 +1,15 @@
+meta {
+  name: menta get all
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{tinner_url}}/user/all
+  body: none
+  auth: none
+}
+
+headers {
+  authorization: Bearer {{menta_token}}
+}
