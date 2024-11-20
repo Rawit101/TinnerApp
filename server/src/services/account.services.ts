@@ -11,7 +11,7 @@ export const AccountServices = {
         const verifyPAssword = user?.verifyPAssword(loginData.password)
         if (!verifyPAssword)
             throw new Error("Password is incorrect")
-        return user.ToUser()
+        return user.toUser()
     },
 
     createNewUser: async function (registerData: register): Promise<user> {
@@ -19,6 +19,6 @@ export const AccountServices = {
         if (user)
             throw new Error(`${registerData.username} !!! Already Exists`)
         const newUser = await User.createUser(registerData)
-        return newUser.ToUser()
+        return newUser.toUser()
     }
 }
