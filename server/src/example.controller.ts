@@ -8,6 +8,9 @@ export const example = new Elysia()
             description: "Welcome To My World"
         }
     })
+    .get("/home", () => "wwwwwwwww", {
+
+    })
     .post("/about", ({ body }) => {
         return {
             id: 'xxx',
