@@ -19,7 +19,7 @@ export const example = new Elysia()
         }), detail: {
             tags: ["Example"],
             summary: "About",
-            description: "Welcome To My SolosoSayTy"
+            description: "Welcome To My Soul Society"
         }
 
     })
