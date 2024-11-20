@@ -1,13 +1,20 @@
 import { Elysia, t } from "elysia"
-import { example } from "./example.controller"
+import { example } from "./controller/example.controller"
 import { swaggerConfig } from "./config/swagger.config"
 import { tlsConfig } from "./config/tls.config"
 import cors from "@elysiajs/cors"
 import { MongoDB } from "./config/database.config"
+import { jwtConfig } from "./config/jwt.config"
+import { model } from "mongoose"
+import { AccountController } from "./controller/account.controller"
+
 
 MongoDB.connect()
+
 const app = new Elysia()
+  .use(AccountController)
   .use(cors())
+  .use(jwtConfig)
   .use(swaggerConfig)
   .use(example)
   .listen({
