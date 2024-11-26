@@ -1,8 +1,8 @@
 import mongoose from "mongoose"
 import { IUserDocument, IUserModel } from "../interfaces/user.interface"
-import { register, user } from "../types/account.types"
+import { register } from "../types/account.types"
 import { calculateAge } from "../helper/date.helper"
-
+import { user } from "../types/user.type"
 const schema = new mongoose.Schema<IUserDocument, IUserModel>({
     username: { type: String, required: true, unique: true },
     password_hash: { type: String, required: true },
@@ -13,6 +13,7 @@ const schema = new mongoose.Schema<IUserDocument, IUserModel>({
     interest: { type: String },
     looking_for: { type: String },
     location: { type: String },
+    gender: { type: String }
 
     // todo: implement photo feature                                                                                    
     // photos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Photo' }],
@@ -52,15 +53,16 @@ schema.methods.toUser = function (): user {
         id: this._id.toString(),
         display_name: this.display_name,
         username: this.username,
-        create_at: this.created_at ? this.created_at.toISOString() : undefined,
-        update_at: this.updated_at ? this.updated_at.toISOString() : undefined,
+        create_at: this.created_at,
+        update_at: this.updated_at,
         // date_of_birth: this.date_of_birth,
         age: ageString,
-        last_active: this.last_active ? this.last_active.toISOString() : undefined,
+        last_active: this.last_active,
         introduction: this.introduction,
         interest: this.interest,
         looking_for: this.looking_for,
         location: this.location,
+        gender: this.gender,
         // todo: photo feature                                                                                          
         // photos: userPhotos,
         // todo: like feature                                                                                           
@@ -79,7 +81,8 @@ schema.statics.createUser = async function (registerData: register): Promise<IUs
         username: registerData.username,
         password_hash: await Bun.password.hash(registerData.password),
         date_of_birth: registerData.date_of_birth,
-        looking_for: registerData.looking_for
+        looking_for: registerData.looking_for,
+        gender: registerData.gender,
     })
     await newUser.save()
     return newUser

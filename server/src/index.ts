@@ -7,6 +7,7 @@ import { MongoDB } from "./config/database.config"
 import { jwtConfig } from "./config/jwt.config"
 import { model } from "mongoose"
 import { AccountController } from "./controller/account.controller"
+import { UserController } from "./controller/user.controller"
 
 
 MongoDB.connect()
@@ -17,6 +18,7 @@ const app = new Elysia()
   .use(jwtConfig)
   .use(swaggerConfig)
   .use(example)
+  .use(UserController)
   .listen({
     port: Bun.env.PORT || 8000,
     tls: tlsConfig
