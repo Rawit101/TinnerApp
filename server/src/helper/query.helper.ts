@@ -17,7 +17,11 @@ export const QueryHelper = {
             const _filter = { looking_for: { $regex: regEx } }
             filter.push(_filter)
         }
-
+        if (query.gender && query.gender != 'all') {
+            const regEx = new RegExp(`\\b${query.gender.trim()}`, 'i')
+            const _filter = { gender: { $regex: regEx } }
+            filter.push(_filter)
+        }
         const age_filter: {
             $lte?: Date //$lte (Less Than or Equal)
             $gte?: Date //$gte (Greater Than or Equal)

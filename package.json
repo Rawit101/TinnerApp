@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@elysiajs/swagger": "^1.1.6"
+  }
+}
