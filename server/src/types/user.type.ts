@@ -3,6 +3,7 @@ import { register } from "./account.types"
 import { _register } from "./register.type"
 import { _pagination, CreatePagination } from "./pagination.type"
 import { User } from "../models/user.model"
+import { _photo } from "./photo.type"
 
 export const _profile = t.Object({
     ...t.Omit(_register, ['password']).properties,
@@ -13,10 +14,8 @@ export const _profile = t.Object({
     age: t.Optional(t.String()),
     last_active: t.Optional(t.Date()),
     create_at: t.Optional(t.Date()),
-    update_at: t.Optional(t.Date())
-
-    //todo: implement upload feature                                                                                    
-    //photo: photo_id[]
+    update_at: t.Optional(t.Date()),
+    photos: t.Optional(t.Array(_photo))
 })
 
 export const _user = t.Object({

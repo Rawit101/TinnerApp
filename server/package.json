@@ -11,7 +11,9 @@
     "@elysiajs/static": "^1.1.1",
     "@elysiajs/swagger": "^1.1.6",
     "@sinclair/typebox": "^0.34.11",
+    "cloudinary": "^2.5.1",
     "elysia": "latest",
+    "file-type": "^19.6.0",
     "mongoose": "^8.8.4"
   },
   "devDependencies": {
