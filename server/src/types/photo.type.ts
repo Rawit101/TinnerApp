@@ -18,6 +18,8 @@ export const _uploadPhoto = t.Object({
 
 export type photo = Static<typeof _photo>
 export const PhotoDto = new Elysia().model({
+
+    photo_id: t.Object({ photo_id: t.String() }),
     upload: _uploadPhoto,
     photo: _photo,
     photos: t.Array(_photo)

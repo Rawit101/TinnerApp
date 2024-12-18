@@ -6,7 +6,7 @@ type userWithOutID = Omit<user, 'id'>
 
 export interface IUserDocument extends mongoose.Document, userWithOutID {
     password_hash: string
-    verifyPAssword: (password: string) => Promise<boolean>
+    verifyPassword: (password: string) => Promise<boolean>
     toUser: () => user
 }
 

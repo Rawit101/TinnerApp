@@ -10,6 +10,8 @@ import { AccountController } from "./controller/account.controller"
 import { UserController } from "./controller/user.controller"
 import { photoController } from "./controller/photo.controller"
 import staticPlugin from "@elysiajs/static"
+import { ImageHelper } from "./helper/image.helper"
+import { LikeController } from "./controller/like.controller"
 
 
 MongoDB.connect()
@@ -20,6 +22,8 @@ const app = new Elysia()
     assets: "public/uploads",
     prefix: "img"
   }))
+
+  .use(LikeController)
   // .use(staticPlugin)
   .use(photoController)
   .use(AccountController)

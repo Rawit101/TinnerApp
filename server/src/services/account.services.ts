@@ -8,10 +8,19 @@ export const AccountServices = {
     login: async function (loginData: login): Promise<user> {
         const user = await User.findOne({ username: loginData.username })
             .populate("photos")
+            .populate({
+                path: "following",
+                select: "_id"
+            })
+            .populate({
+                path: "followers",
+                select: "_id"
+            })
+
             .exec()
         if (!user)
             throw new Error("User Does not exits")
-        const verifyPAssword = user?.verifyPAssword(loginData.password)
+        const verifyPAssword = user?.verifyPassword(loginData.password)
         if (!verifyPAssword)
             throw new Error("Password is incorrect")
         return user.toUser()
