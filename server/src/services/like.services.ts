@@ -41,7 +41,7 @@ export const LikeService = {
         pagination.length = total[0].count
         let follower: user[] = []
         if (docs) {
-            follower = docs.followers as user[]
+            follower = docs.toUser()['followers'] as user[]
         }
         return {
             pagination: pagination,
@@ -67,7 +67,8 @@ export const LikeService = {
         pagination.length = total[0].count
         let following: user[] = []
         if (docs) {
-            following = docs.followers as user[]
+            // following = docs.followers as user[]
+            following = docs.toUser()['following'] as user[]
         }
         return {
             pagination: pagination,

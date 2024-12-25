@@ -19,10 +19,10 @@ export const AccountServices = {
 
             .exec()
         if (!user)
-            throw new Error("User Does not exits")
-        const verifyPAssword = user?.verifyPassword(loginData.password)
-        if (!verifyPAssword)
-            throw new Error("Password is incorrect")
+            throw new Error('User does not exist')
+        const verifyPassword = await user.verifyPassword(loginData.password)
+        if (!verifyPassword)
+            throw new Error('Password does not exist')
         return user.toUser()
     },
 
