@@ -13,10 +13,11 @@ export const UserController = new Elysia({
     .use(AuthMiddleWare)
     .get('/all', () => {
         return {
-            Text: "Hello Word"
+            user: [
+                { id: '1221', name: 'a' },
+                { id: '1221', name: 'a' }
+            ]
         }
-    }, {
-        isSignIn: true
     })
 
     .get('/', ({ query, Auth }) => {
@@ -29,6 +30,8 @@ export const UserController = new Elysia({
             Response: "users",
             isSignin: true,
         })
+
+
     .patch('/', async ({ body, set, Auth }) => {
         try {
             const user_id = (Auth.payload as AuthPayLoad).id
