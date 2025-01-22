@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core'
+import { Component, inject, signal } from '@angular/core'
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms'
 import { PasswordValidator } from '../_validators/password.validator'
 import { PasswordMatchValidator } from '../_validators/password.match.validator'
@@ -10,6 +10,8 @@ import { provideNativeDateAdapter } from '@angular/material/core'
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatRadioModule } from '@angular/material/radio'
 import { MatCardModule } from '@angular/material/card'
+import { AccountService } from '../_services/account.service'
+import { Router } from '@angular/router'
 @Component({
   selector: 'app-login',
   imports: [FormsModule, ReactiveFormsModule, CommonModule, MatFormFieldModule, MatInputModule, MatButtonModule,
@@ -23,6 +25,9 @@ export class LoginComponent {
   mode: 'login' | 'register' = 'login'
   form: FormGroup
 
+  private accountService = inject(AccountService)
+  private router = inject(Router)
+  errorFromServer = ''
   private readonly _currentYear = new Date().getFullYear()
   readonly minDate = new Date(this._currentYear - 70, 0, 1)
   readonly maxDate = new Date(this._currentYear - 18, 11, 31)
@@ -68,9 +73,14 @@ export class LoginComponent {
     }
   }
 
-  onSubmit() {
-    if (this.form.invalid) return
-    console.log(this.form.value)
+  async onSubmit() {
+    if (this.mode === 'login') {
+      this.errorFromServer = await this.accountService.login(this.form.value)
+    } else {
+      this.errorFromServer = await this.accountService.register(this.form.value)
+    }
+    if (this.errorFromServer === '')
+      this.router.navigate(['/'])
   }
 
   updateErrorMessages(ctrlName: string) {
@@ -79,7 +89,7 @@ export class LoginComponent {
     switch (ctrlName) {
       case 'username':
         if (control.hasError('required'))
-          this.errorMessages.username.set('Username is required')
+          this.errorMessages.username.set('required')
         else if (control.hasError('minlength'))
           this.errorMessages.username.set('Username must be at least 6 characters')
         else if (control.hasError('maxlength'))
@@ -88,28 +98,28 @@ export class LoginComponent {
           this.errorMessages.username.set('')
         break
 
-      case 'passsword':
+      case 'password':
         if (control.hasError('required'))
-          this.errorMessages.password.set('Username is required')
-        else if (control.hasError('invalidMinlength'))
-          this.errorMessages.password.set('Username must be at least 8 characters')
-        else if (control.hasError('invalidMaxlength'))
-          this.errorMessages.password.set('Username must be at least 16 characters')
-        else if (control.hasError('invalidLowerCase'))
-          this.errorMessages.password.set('Username must be at minimum 1 lowercase character')
-        else if (control.hasError('invalidUpperCase'))
-          this.errorMessages.password.set('Username must be at minimum 1 lowercase character')
-        else if (control.hasError('invalidNumberic'))
-          this.errorMessages.password.set('Username must be at minimum 1 lowercase character')
-        else if (control.hasError('invalidSpecialCharacter'))
-          this.errorMessages.password.set('Username must be at minimum 1 lowercase character')
+          this.errorMessages.password.set('required')
+        else if (control.hasError('inValidMinLength'))
+          this.errorMessages.password.set('Password must be at least 8 characters long')
+        else if (control.hasError('inValidMaxLength'))
+          this.errorMessages.password.set('Password must be 16 characters or fewer')
+        else if (control.hasError('inValidLowercase'))
+          this.errorMessages.password.set('Password must contain minimum of one lower-case letter')
+        else if (control.hasError('inValidUppercase'))
+          this.errorMessages.password.set('Password must contain minimum of one Upper-case letter')
+        else if (control.hasError('inValidNumber'))
+          this.errorMessages.password.set('Password must contain minimum of one numeric character')
+        else if (control.hasError('inValidSpecialCharacter'))
+          this.errorMessages.password.set('Password must contain minimum of one special character')
         else
           this.errorMessages.password.set('')
         break
 
       case 'confirm_password':
         if (control.hasError('required'))
-          this.errorMessages.confirm_password.set('Username is required')
+          this.errorMessages.confirm_password.set('required')
         else if (control.hasError('misMatch'))
           this.errorMessages.confirm_password.set('Do not match password')
         else
@@ -118,7 +128,7 @@ export class LoginComponent {
 
       case 'display_name':
         if (control.hasError('required'))
-          this.errorMessages.display_name.set('Username is required')
+          this.errorMessages.display_name.set('required')
         else if (control.hasError('minlength'))
           this.errorMessages.display_name.set('Username must be at least 3 characters')
         else if (control.hasError('maxlength'))

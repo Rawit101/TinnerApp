@@ -12,6 +12,7 @@ import { photoController } from "./controller/photo.controller"
 import staticPlugin from "@elysiajs/static"
 import { ImageHelper } from "./helper/image.helper"
 import { LikeController } from "./controller/like.controller"
+import { ErrorController } from "./controller/error.controller"
 
 
 MongoDB.connect()
@@ -23,6 +24,8 @@ const app = new Elysia()
     prefix: "img"
   }))
 
+
+  .use(ErrorController)
   .use(LikeController)
   // .use(staticPlugin)
   .use(photoController)

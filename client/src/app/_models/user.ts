@@ -19,4 +19,6 @@ export interface User {
     following?: User[] | string[]
     followers?: User[] | string[]
 
+    password?: string
+
 }
