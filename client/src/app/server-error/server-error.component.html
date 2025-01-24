@@ -1,24 +1,30 @@
-<section class="page_404">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12 ">
-          <div class="col-sm-10 col-sm-offset-1  text-center">
-            <div class="four_zero_four_bg">
-              <h1 class="text-center ">404</h1>
-  
-            </div>
-  
-            <div class="contant_box_404">
-              <h3 class="h2">
-                Look like you're lost
-              </h3>
-  
-              <p>the page you are looking for not avaible!</p>
-  
-              <a href="" class="link_404">Go to Home</a>
-            </div>
-          </div>
-        </div>
-      </div>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Error Page</title>
+  <link rel="stylesheet" href="./server-error.component.scss" />
+  <script src="https://kit.fontawesome.com/66aa7c98b3.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="gif">
+      <img src="https://i.postimg.cc/2yrFyxKv/giphy.gif" alt="gif_ing" />
     </div>
-  </section>
+    <div class="content">
+      <h1 class="main-heading">ERROR {{error?.['code']}} LET HIM COOK 🍳🥓</h1>
+      <p>
+        ...maybe the page you're looking for is not found or never existed.
+      </p>
+      <a href="https://localhost:4200/" target="">
+        <button>Back to home <i class="far fa-hand-point-right"></i></button>
+      </a>
+      <p>{{error?.['message']}}</p>
+    </div>
+  </div>
+</body>
+
+</html>

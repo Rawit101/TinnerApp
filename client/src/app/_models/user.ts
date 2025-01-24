@@ -15,6 +15,7 @@ export interface User {
     avatar?: string
     photos?: Photo[]
     photoOfTheDay?: string
+    location?: string
 
     following?: User[] | string[]
     followers?: User[] | string[]
