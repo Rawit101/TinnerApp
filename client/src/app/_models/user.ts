@@ -4,7 +4,7 @@ export interface User {
     id?: string
     display_name?: string
     username?: string
-    create_at?: Date
+    created_at?: Date
     update_at?: Date
     last_active?: Date
     introduction?: string

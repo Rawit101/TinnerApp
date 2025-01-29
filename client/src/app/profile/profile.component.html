@@ -9,12 +9,12 @@
                             name="display_name">
                     </mat-form-field>
                     <mat-form-field>
-                        <mat-label>introduction</mat-label>
+                        <mat-label>Introduction</mat-label>
                         <textarea matInput [(ngModel)]="user.introduction"
                             name="introduction" rows="6"></textarea>
                     </mat-form-field>
                     <mat-form-field>
-                        <mat-label>interest</mat-label>
+                        <mat-label>Interest</mat-label>
                         <textarea matInput [(ngModel)]="user.interest"
                             name="interest" rows="6"></textarea>
                     </mat-form-field>
@@ -47,6 +47,7 @@
             </mat-tab>
     
             <mat-tab label="Photos">
+                <app-photo [user]="user"></app-photo>
     
             </mat-tab>
         </mat-tab-group>

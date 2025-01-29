@@ -10,7 +10,7 @@ const schema = new mongoose.Schema<IPhotoDocument, IPhotoModel>({
     is_avatar: { type: Boolean, required: true, default: false },
 
 }, {
-    timestamps: { createdAt: 'created_at' }
+    timestamps: { createdAt: 'create_at' }
 
 })
 
