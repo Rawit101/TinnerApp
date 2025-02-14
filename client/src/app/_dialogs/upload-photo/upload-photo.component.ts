@@ -26,8 +26,6 @@ export class UploadPhotoComponent {
 
   omSubmit() {
     this.dialogRef.close(this.imgFile)
-
-
   }
 
   async onImgPicked(event: Event) {

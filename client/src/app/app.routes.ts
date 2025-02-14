@@ -10,17 +10,30 @@ export const routes: Routes = [
         path: '',
         runGuardsAndResolvers: 'always',
         canActivate: [authGuard],
-        children: [{
-            path: 'members',
-            loadComponent: () => import('./member/member.component').then(c => c.
-                MemberComponent)
-        },
-        {
-            path: 'profile',
-            loadComponent: () => import('./profile/profile.component').then(c => c.ProfileComponent)
-        }
+        children: [
+            {
+                path: 'members',
+                loadComponent: () => import('./member/member.component').then(c => c.
+                    MemberComponent)
+            },
+            {
+                path: 'members-profile/:username',
+                loadComponent: () => import('./member/member-profile/member-profile.component').then(c => c.
+                    MemberProfileComponent)
+            },
+            {
+                path: 'profile',
+                loadComponent: () => import('./profile/profile.component').then(c => c.ProfileComponent)
+            },
+            {
+                path: 'followers',
+                loadComponent: () => import('./followers/followers.component').then(c => c.FollowersComponent)
+            },
+            {
+                path: 'following',
+                loadComponent: () => import('./following/following.component').then(c => c.FollowingComponent)
+            }
         ]
-
     },
 
     {

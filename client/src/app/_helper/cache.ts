@@ -1,6 +1,6 @@
 import { User } from "../_models/user"
 import { Paginator, UserQueryPagination } from "../_models/pagination"
-import { parseUser } from "./helper"
+import { parseUserPhoto } from "./helper"
 const data = new Map()
 type cacheOpt = 'members' | 'chat' | 'follower' | 'following'
 type cacheValue = Paginator<UserQueryPagination, User>
@@ -18,7 +18,7 @@ export const cacheManager = {
 
     save: function (key: string, opt: cacheOpt, value: cacheValue) {
         // if (opt === 'chat')
-        value.items = value.items.map(u => parseUser(u))
+        value.items = value.items.map(u => parseUserPhoto(u))
         data.set(opt + key, value)
     },
 

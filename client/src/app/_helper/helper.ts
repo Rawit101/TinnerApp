@@ -2,7 +2,7 @@ import { QueryPagination, UserQueryPagination } from "../_models/pagination"
 import { User } from "../_models/user"
 
 const defaultImage = '/assets/default.png'
-const defaultAvatar = '/assets/profile.png'
+const defaultAvatar = '/assets/default.png'
 
 function getAvater(user: User): string {
     if (user.photos) {
@@ -21,7 +21,7 @@ function getPhotoOfTheDay(user: User): string {
     return defaultImage
 }
 
-export function parseUser(user: User): User {
+export function parseUserPhoto(user: User): User {
     user.avatar = getAvater(user)
     user.photoOfTheDay = getPhotoOfTheDay(user)
     return user
