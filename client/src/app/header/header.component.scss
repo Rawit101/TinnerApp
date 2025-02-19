@@ -18,6 +18,19 @@ mat-toolbar button.active:not(.home-button) {
 }
 
 mat-toolbar .home-button {
-    color: rgb(0, 0, 0);
-    font-size: 1em;
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.followers,
+.following {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #666;
+    margin-left: 10px;
 }

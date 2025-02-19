@@ -13,6 +13,7 @@ import staticPlugin from "@elysiajs/static"
 import { ImageHelper } from "./helper/image.helper"
 import { LikeController } from "./controller/like.controller"
 import { ErrorController } from "./controller/error.controller"
+import { MessageController } from "./controller/message.controller"
 
 
 MongoDB.connect()
@@ -25,6 +26,7 @@ const app = new Elysia()
   }))
 
 
+  .use(MessageController)
   .use(ErrorController)
   .use(LikeController)
   // .use(staticPlugin)

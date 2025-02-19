@@ -29,6 +29,4 @@ export class MemberCardComponent implements OnInit {
     this.isFollowing = this.likeService.toggleLike(member.id!)
     cacheManager.clear('all')
   }
-
-
 }
