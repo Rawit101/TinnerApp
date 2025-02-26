@@ -12,7 +12,10 @@
                         <img class="img-thumb" src="{{member.avatar}}" alt="Photo of member">
                         <mat-card-actions align="end">
                             <button mat-button (click)="photo.toggle()">
-                                <mat-icon>image</mat-icon>
+                                <mat-icon>image</mat-icon>Photo
+                            </button>
+                            <button mat-button (click)="toggleChat()">
+                                <mat-icon>chat</mat-icon>Chat
                             </button>
                         </mat-card-actions>
                     </div>
@@ -46,6 +49,40 @@
                 Back to Profile
             </button>
         </mat-drawer>
-      
       </mat-drawer-container>
+}
+@if (isChatOpen) {
+    <div class="chatter">
+    <div class="chat-container">
+        <div class="chat-title">
+            @if (numberOfUnreadMessages - messages.length > 0) {
+                <div class="get-more-msg" (click)="getMorechatHistory()">
+                    {{numberOfUnreadMessages - messages.length}} messages are not yet display,read more
+                </div>
+            }
+            <div></div>
+            <button mat-button (click)="toggleChat()">
+                <mat-icon>east</mat-icon>
+            </button>
+        </div>
+
+        <ul class="chat" #chat>
+            @for (message of messages; track $index) {
+                <li>
+                    <app-message 
+                    [sender]="user"
+                     [recipient]="member" 
+                     [message]="message" 
+                    [previousMessageSenDate]="$index===0?undefined:messages[$index-1].create_at">
+                </app-message>
+                </li>
+            }
+        </ul>
+
+        <div class="input-container">
+            <input type="text" [(ngModel)]="newMessage" (keyup.enter)="send()" >
+            <button type="button" (click)="send()">Send</button>
+        </div>
+    </div>
+</div>
 }

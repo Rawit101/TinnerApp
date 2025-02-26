@@ -15,7 +15,7 @@ type client = {
 const groupSubscriptions = new Map<string, Set<client>>()
 
 export const MessageController = new Elysia({
-    prefix: 'api/message',
+    prefix: 'api/messages',
     tags: ['Message'],
 })
     .use(jwtConfig)

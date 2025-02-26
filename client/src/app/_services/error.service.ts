@@ -49,7 +49,7 @@ export class ErrorService {
           this.router.navigate(['/server-error'], navExtra)
           break
         default:
-          this.snackBar.open("An error occurred", "Close", this.snackBarConfig)
+          this.snackBar.open("An error ccurred", "Close", this.snackBarConfig)
           break
       }
 
